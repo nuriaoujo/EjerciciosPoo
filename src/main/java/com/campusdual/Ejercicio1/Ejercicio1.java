@@ -7,7 +7,7 @@ public class Ejercicio1 {
 
         //Año bisiesto es el divisible entre 4, salvo que sea año secular -último de cada siglo,
         // terminado en «00»-, en cuyo caso también ha de ser divisible entre 400.
-        int anio = 2004;
+        Integer anio = 1999;
         //Con IF-ELSE
         if (anio % 4 == 0) {
             if ( anio % 100 == 0) {
