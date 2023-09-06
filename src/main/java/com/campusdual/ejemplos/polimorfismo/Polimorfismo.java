@@ -1,4 +1,4 @@
-package com.campusdual.ejemplos;
+package com.campusdual.ejemplos.polimorfismo;
 
 public class Polimorfismo {
     private Integer numero;

@@ -1,4 +1,6 @@
-package com.campusdual.ejemplos;
+package com.campusdual.ejemplos.polimorfismo;
+
+import com.campusdual.ejemplos.polimorfismo.Polimorfismo;
 
 public class PolimorfismoMain {
     public static void main(String[] args) {
