@@ -1,6 +1,6 @@
 package com.campusdual.Ejercicio3JuanjoV;
 
-import com.campusdual.ejemplos.alimentos.Food;
+import com.campusdual.Ejercicio3JuanjoV.Food;
 import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxCaloriesReachedException;
 import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxCarbsReachedException;
 import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxFatsReachedException;
