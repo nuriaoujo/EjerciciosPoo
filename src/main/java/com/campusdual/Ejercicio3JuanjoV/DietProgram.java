@@ -1,10 +1,10 @@
-package com.campusdual.Ejercicio3V2;
+package com.campusdual.Ejercicio3JuanjoV;
 
-import com.campusdual.Ejercicio3.Food;
-import com.campusdual.Ejercicio3V2.exceptions.MaxCaloriesReachedException;
-import com.campusdual.Ejercicio3V2.exceptions.MaxCarbsReachedException;
-import com.campusdual.Ejercicio3V2.exceptions.MaxFatsReachedException;
-import com.campusdual.Ejercicio3V2.exceptions.MaxProteinsReachedException;
+import com.campusdual.ejemplos.alimentos.Food;
+import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxCaloriesReachedException;
+import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxCarbsReachedException;
+import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxFatsReachedException;
+import com.campusdual.Ejercicio3JuanjoV.exceptions.MaxProteinsReachedException;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -12,7 +12,7 @@ import java.util.List;
 
 public class DietProgram {
 
-    private Diets diet=null;
+    private Diet diet=null;
 
     private List<Food> foodList;
 
@@ -157,7 +157,7 @@ public class DietProgram {
         Integer option = getOption(1,4);
         switch (option){
             case 1:
-                this.diet = new Diets();
+                this.diet = new Diet();
                 System.out.println("Se ha creado una dieta sin límites");
                 break;
             case 2:
@@ -165,7 +165,7 @@ public class DietProgram {
                 System.out.println("Escriba número de calorias");
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 Integer calories = Kb.forceNextInt();
-                this.diet = new Diets(calories);
+                this.diet = new Diet(calories);
                 System.out.println("Se ha creado una dieta con "+calories+" calorías máximas");
                 break;
             case 3:
@@ -178,7 +178,7 @@ public class DietProgram {
                 Integer fats = Kb.forceNextInt();
                 System.out.println("Proteínas:");
                 Integer proteins = Kb.forceNextInt();
-                this.diet = new Diets(fats,carbs,proteins);
+                this.diet = new Diet(fats,carbs,proteins);
                 System.out.println("Se ha creado una dieta con Carbohidratos:"+carbs+", Grasas:"+fats+" ,Proteínas:"+proteins);
                 break;
             case 4:
@@ -193,7 +193,7 @@ public class DietProgram {
                 Integer age = Kb.forceNextInt();
                 System.out.println("Mujer u Hombre(m/h):");
                 String sexCharacter = Kb.nextLine();
-                this.diet = new Diets("m".equalsIgnoreCase(sexCharacter),age,height,weight);
+                this.diet = new Diet("m".equalsIgnoreCase(sexCharacter),age,height,weight);
                 System.out.println("Se ha creado una dieta de "+this.diet.getMaxCalories()+" calorías máximas");
                 break;
         }

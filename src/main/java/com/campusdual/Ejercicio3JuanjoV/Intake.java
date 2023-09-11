@@ -1,6 +1,4 @@
-package com.campusdual.Ejercicio3V2;
-
-import com.campusdual.Ejercicio3.Food;
+package com.campusdual.Ejercicio3JuanjoV;
 
 public class Intake extends Food {
 

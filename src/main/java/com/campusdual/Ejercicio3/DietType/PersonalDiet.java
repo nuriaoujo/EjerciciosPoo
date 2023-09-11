@@ -1,4 +1,7 @@
-package com.campusdual.Ejercicio3;
+package com.campusdual.Ejercicio3.DietType;
+
+import com.campusdual.Ejercicio3.DietType.Diet;
+import com.campusdual.Ejercicio3.Food;
 
 public class PersonalDiet extends Diet {
     private Integer maxFats;

@@ -1,12 +1,10 @@
-package com.campusdual.Ejercicio3V2;
+package com.campusdual.Ejercicio3JuanjoV;
 
-import com.campusdual.Ejercicio3.Food;
-import com.campusdual.Ejercicio3V2.exceptions.*;
+import com.campusdual.Ejercicio3JuanjoV.exceptions.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-
-public class Diets {
+public class Diet {
     public static final String OK = "OK";
     public static final String MAX_CALORIES_REBASE = "MAX_CALORIES_REBASE";
     public static final String MAX_CARBS_REBASE = "MAX_CARBS_REBASE";
@@ -19,23 +17,23 @@ public class Diets {
     private Integer maxProteins;
     private List<Intake> intakes;
 
-    public Diets(){
+    public Diet(){
         this.intakes = new ArrayList<>();
     }
 
-    public Diets(Integer maxCalories){
+    public Diet(Integer maxCalories){
         this.maxCalories=maxCalories;
         this.intakes = new ArrayList<>();
     }
 
-    public Diets(Integer maxFats, Integer maxCarbs, Integer maxProteins){
+    public Diet(Integer maxFats, Integer maxCarbs, Integer maxProteins){
         this.maxCarbs=maxCarbs;
         this.maxFats=maxFats;
         this.maxProteins=maxProteins;
         this.intakes = new ArrayList<>();
     }
 
-    public Diets(Boolean women, Integer age, Integer height, Integer weight){
+    public Diet(Boolean women, Integer age, Integer height, Integer weight){
         if(women){
             maxCalories = (int) ((10*weight) + (6.25*height))-(5*age)-161;
         }else{
@@ -86,7 +84,7 @@ public class Diets {
         return OK;
     }
 
-    public Integer getTotalCalories(){
+	public Integer getTotalCalories(){
         Integer totalCalories = 0;
         for(Intake intake:intakes){
             totalCalories = totalCalories+ intake.calculatedCalories();
@@ -94,7 +92,7 @@ public class Diets {
         return totalCalories;
     }
 
-    public Integer getTotalCarbs(){
+	public Integer getTotalCarbs(){
         Integer totalCarbs = 0;
         for(Intake intake:intakes){
             totalCarbs = totalCarbs + intake.calculatedCarbos();
@@ -102,7 +100,7 @@ public class Diets {
         return totalCarbs;
     }
 
-    public Integer getTotalFats(){
+	public Integer getTotalFats(){
         Integer totalFats = 0;
         for(Intake intake:intakes){
             totalFats = totalFats + intake.calculatedFats();
@@ -110,7 +108,7 @@ public class Diets {
         return totalFats;
     }
 
-    public Integer getTotalProteins(){
+	public Integer getTotalProteins(){
         Integer totalProtein = 0;
         for(Intake intake: intakes){
             totalProtein = totalProtein + intake.calculatedProteins();

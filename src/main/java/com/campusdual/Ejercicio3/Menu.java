@@ -1,5 +1,10 @@
 package com.campusdual.Ejercicio3;
 
+import com.campusdual.Ejercicio3.DietType.CaloriesDiet;
+import com.campusdual.Ejercicio3.DietType.Diet;
+import com.campusdual.Ejercicio3.DietType.MacronutrientsDiet;
+import com.campusdual.Ejercicio3.DietType.PersonalDiet;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,6 +21,8 @@ public class Menu {
     Scanner scannerName = new Scanner(System.in);
 
 public Menu(){
+    diet = null;
+
     arrayFoods.add(new Food("zanahoria",12,0,1));
     arrayFoods.add(new Food("bistec",0,15,27));
     arrayFoods.add(new Food("lechuga",1,0,0));
@@ -28,8 +35,6 @@ public Menu(){
 }
 
 public void startApp() {
-    diet = null;
-
     while (isRunning) {
         System.out.println("Hola! Selecciona qué quieres hacer");
         System.out.println( "1.Crear dieta (1)\n" +

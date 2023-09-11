@@ -1,6 +1,9 @@
-package com.campusdual.Ejercicio3;
+package com.campusdual.Ejercicio3.DietType;
 
-public class MacronutrientsDiet extends Diet{
+import com.campusdual.Ejercicio3.DietType.Diet;
+import com.campusdual.Ejercicio3.Food;
+
+public class MacronutrientsDiet extends Diet {
 
     private boolean isWomen;
     private Integer age;

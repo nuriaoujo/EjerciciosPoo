@@ -1,4 +1,4 @@
-package com.campusdual.Ejercicio3V2;
+package com.campusdual.Ejercicio3JuanjoV;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;

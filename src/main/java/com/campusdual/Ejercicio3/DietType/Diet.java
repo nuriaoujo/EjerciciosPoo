@@ -1,4 +1,6 @@
-package com.campusdual.Ejercicio3;
+package com.campusdual.Ejercicio3.DietType;
+
+import com.campusdual.Ejercicio3.Food;
 
 import java.util.ArrayList;
 import java.util.List;
