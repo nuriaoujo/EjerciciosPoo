@@ -6,22 +6,12 @@ public class Food {
     private Integer fats;
     private Integer proteins;
 
-    //GET y SET
     public String getName() { return name; }
     public Integer getCarbos() { return carbos; }
-
     public Integer getFats() { return fats; }
-
     public Integer getProteins() { return proteins; }
 
-    public void setName(String name) { this.name = name; }
-    public void setCarbos(Integer carbos) { this.carbos = carbos; }
-
-    public void setFats(Integer fats) { this.fats = fats; }
-
-    public void setProteins(Integer proteins) { this.proteins = proteins; }
-
-    //Constructores
+    //CONSTRUCTOR
     public Food(String name, Integer carbos, Integer fats, Integer proteins){
         this.name = name;
         this.carbos = carbos;
@@ -33,12 +23,6 @@ public class Food {
         return ((carbos * 4) + (fats * 9) + (proteins * 4) * weight/100);
     }
 
-    public static Integer getCalories(Integer weight, Integer carbos, Integer fats, Integer proteins) {
-        return ((carbos * 4) + (fats * 9) + (proteins * 4) * weight/100);
-    }
-
-    //Si no es STATIC llama al constructor para operar
-    //Si es STATIC NECESITA pedir los atributos para operar, no necesita llamar al constructor
     public Integer sumCalories(Integer weight, Food otherFood) {
         Integer newcarbos = this.carbos + otherFood.carbos;
         Integer newfats = this.fats + otherFood.fats;
