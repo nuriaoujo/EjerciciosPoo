@@ -6,6 +6,10 @@ public class Food {
     private Integer fats;
     private Integer proteins;
 
+    public Food(String name) {
+        this.name = name;
+    }
+
     public String getName() { return name; }
     public Integer getCarbos() { return carbos; }
     public Integer getFats() { return fats; }
