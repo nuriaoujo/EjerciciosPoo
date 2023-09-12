@@ -1,22 +1,32 @@
 package com.campusdual.Ejercicio3.DietType;
 
 import com.campusdual.Ejercicio3.Food;
+import com.campusdual.Ejercicio3.Meals;
 
 public class CaloriesDiet extends Diet {
-    private Integer maxCaloriesDiet;
-    public void setMaxCaloriesDiet(Integer maxCaloriesDiet) { this.maxCaloriesDiet = maxCaloriesDiet; }
 
-    public void caloriesDiet(Food food){
-        Integer foodCaloriesCase2 = food.getCalories(100);
-        if(maxCaloriesDiet <= foodCaloriesCase2) {
-            System.out.println("ERROR: el alimento " + food.getName() + " supera tu límite de calorías");
+    public void caloriesDiet(Meals meal){
+        if(maxCaloriesDiet < meal.getMealsCalories()) {
+            System.out.println("ERROR: el alimento " + meal.getName() + " supera tu límite de calorías");
         } else {
-            if(getMaxCalories(100) <= food.getCalories(100)) {
-                dietList.add(food);
-                System.out.println("El alimento " + food.getName() + " ha sido añadido correctamente");
+            if(getMaxCalories(meal.getGrams()) <= meal.getMealsCalories()) {
+                System.out.println("ERROR: el alimento " + meal.getName() + " supera tu límite de calorías");
             } else {
-                System.out.println("ERROR: el alimento " + food.getName() + " supera tu límite de calorías");
+                dietList.add(meal);
+                System.out.println("El alimento " + meal.getName() + " ha sido añadido correctamente");
             }
         }
+    }
+
+    public void showInfo() {
+        System.out.println("Esta es su dieta actualmente:");
+        for (Meals value : dietList) {
+            System.out.println(value.getName() + ", " + value.getGrams() + " gramos");
+        }//for
+        System.out.println("Los macronutrientes de la dieta son: "
+                + this.getTotalCarbos(dietList) + " carbohidratos,"
+                + this.getTotalFats(dietList) + " grasas y "
+                + this.getTotalProtein(dietList) + " proteínas");
+        System.out.println("El número de calorías en tu dieta son : " + maxCaloriesDiet);
     }
 }
