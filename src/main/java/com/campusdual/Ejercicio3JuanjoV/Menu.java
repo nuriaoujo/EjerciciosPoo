@@ -19,16 +19,17 @@ package com.campusdual.Ejercicio3JuanjoV;
 import com.campusdual.Ejercicio3JuanjoV.Patients.ManagePatients;
 import com.campusdual.Ejercicio3JuanjoV.Patients.Patients;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     Patients patients;
     ManagePatients managePatients;
+    ManageDiets manageDiets;
 
     public Menu(){
-        patients.getPatientsList().add(new Patients("María", "Álvarez", 67, 168, 43, "Mujer", null));
-        patients.getPatientsList().add(new Patients("Joaquín", "Míguez", 87, 173, 27, "Hombre", null));
+        patients = new Patients();
     }
     public void startApp() {
         System.out.println("Bienvenido a la Aplicación de Gestión de Dietas,¿qué deseas hacer?");
@@ -38,19 +39,21 @@ public class Menu {
         Integer menuSelection = scanner.nextInt();
         switch(menuSelection) {
             case 1:
+                manageDiets = new ManageDiets();
                 System.out.println("Has seleccionado: ");
                 System.out.println("GESTIONAR DIETAS ");
                 System.out.println("=====================================");
-                //TODO union con la clase dietas...
+                manageDiets.dietsManager();
                 break;
             case 2:
+                managePatients = new ManagePatients();
                 System.out.println("Has seleccionado: ");
                 System.out.println("GESTIONAR PACIENTES ");
                 System.out.println("=====================================");
                 managePatients.patientManager();
                 break;
             case 3:
-                System.out.println("¡Hasta la próxima! ");
+                System.out.println("¡Hasta la próxima!");
                 break;
             default:
                 break;

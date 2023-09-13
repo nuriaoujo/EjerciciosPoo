@@ -19,10 +19,11 @@ public class ManagePatients {
                             "2. Mostrar detalles de los pacientes (2) \n" +
                             "3. Asignar dietas a pacientes (3) \n" +
                             "4. Eliminar dietas a pacientes (4) \n" + //Todo decidir si eliminar todos los datos o solamente uno
-                            "5. Dar de baja a pacientes (5 \n)" +
+                            "5. Dar de baja a pacientes (5) \n" +
                             "6. Volver al menú principal");
 
         int patientManagerSelected = scanner.nextInt();
+        patients = new Patients();
         switch(patientManagerSelected) {
             case 1:
                 patients.createPatient();
@@ -62,7 +63,6 @@ public class ManagePatients {
                 patientManager();
                 break;
         }
-
     }
 
     public void repeatAction() {

@@ -2,13 +2,14 @@ package com.campusdual.Ejercicio3JuanjoV.Patients;
 
 import com.campusdual.Ejercicio3JuanjoV.Diet;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Patients {
     List <Patients> patientsList = new ArrayList<>();
-    List <Diet> weeklyDiet = new ArrayList<>();
+    List <Diet> weeklyDiet;
     Scanner scanner =  new Scanner(System.in);
     Scanner scannerName =  new Scanner(System.in);
     private boolean requestDeclined;
@@ -21,10 +22,13 @@ public class Patients {
     private String genre;
     private String newGenrePatient;
 
-    public List<Patients> getPatientsList() { return patientsList; }
-
     public String getName() { return name; }
     public String getLastName() { return lastName; }
+
+    public Patients(){
+        patientsList.add(new Patients("María", "Álvarez", 67, 168, 43, "Mujer", null));
+        patientsList.add(new Patients("Joaquín", "Míguez", 87, 173, 27, "Hombre", null));
+    }
 
     public Patients(String name, String lastName, Integer weight, Integer height, Integer age, String genre, List weeklyDiet) {
         this.name = name;
@@ -82,7 +86,6 @@ public class Patients {
     }
 
     public void showPatientsDetails() {
-        //TODO lista de pacientes para tener algo :(
         System.out.println("BIENVENIDO AL GESTOR DE DATOS DE PACIENTES");
         System.out.println("======================================");
         System.out.println("Estos son tus pacientes registrados:");
@@ -90,12 +93,19 @@ public class Patients {
         if(patientsList.size() == 0) {
             System.out.println("ERROR: Todavía no tienes pacientes registrados");
         } else {
-            System.out.println("Selecciona al paciente del que necesitas más información: ");
-            int patientSelected = scanner.nextInt();
             for (int i = 0; i < patientsList.size(); i++) {
-                System.out.println(i + "." + patientsList.get(i).getName() + ", " + patientsList.get(i).getLastName());
+                System.out.println((i+1) + "." + patientsList.get(i).getName() + " " + patientsList.get(i).getLastName());
             }
-
+            System.out.println("Selecciona al paciente del que necesitas más información: ");
+            int patientSelected = scanner.nextInt(); //Restar -1 a patientSelected
+            System.out.println("INFORMACIÓN SOBRE EL PACIENTE");
+            System.out.println(patientsList.get(patientSelected-1).getName() + " " + patientsList.get(patientSelected-1).getLastName());
+            System.out.println("======================================");
+            if(weeklyDiet == null) {
+                System.out.println("Todavía no existen datos del paciente " + patientsList.get(patientSelected-1).getName());
+            } else {
+                System.out.println("Estas son las dietas registradas para el paciente " + patientsList.get(patientSelected-1).getName());
+            }
         }
     }
 
