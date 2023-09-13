@@ -1,0 +1,113 @@
+package com.campusdual.Ejercicio3JuanjoV.Patients;
+
+import com.campusdual.Ejercicio3JuanjoV.Diet;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Patients {
+    List <Patients> patientsList = new ArrayList<>();
+    List <Diet> weeklyDiet = new ArrayList<>();
+    Scanner scanner =  new Scanner(System.in);
+    Scanner scannerName =  new Scanner(System.in);
+    private boolean requestDeclined;
+
+    private String name;
+    private String lastName;
+    private Integer weight;
+    private Integer height;
+    private Integer age;
+    private String genre;
+    private String newGenrePatient;
+
+    public List<Patients> getPatientsList() { return patientsList; }
+
+    public String getName() { return name; }
+    public String getLastName() { return lastName; }
+
+    public Patients(String name, String lastName, Integer weight, Integer height, Integer age, String genre, List weeklyDiet) {
+        this.name = name;
+        this.lastName = lastName;
+        this.weight = weight;
+        this.height = height;
+        this.age = age;
+        this.genre = genre;
+        this.weeklyDiet = weeklyDiet;
+    }
+
+    public void createPatient() {
+        System.out.println("BIENVENIDO AL REGISTRO DE PACIENTES");
+        System.out.println("======================================");
+        System.out.println("Escribe el nombre del paciente:");
+        String newNamePatient = scannerName.nextLine();
+
+        System.out.println("Escribe los apellidos del paciente:");
+        String newLastNamePatient = scannerName.nextLine();
+
+        System.out.println("Escribe el peso del paciente:");
+        Integer newWeightPatient = scanner.nextInt();
+
+        System.out.println("Escribe la altura del paciente:");
+        Integer newHeightPatient = scanner.nextInt();
+
+        System.out.println("Escribe la edad del paciente:");
+        Integer newAgePatient = scanner.nextInt();
+
+        while(requestDeclined) {
+            System.out.println("Proporciona el género del paciente:");
+            System.out.println("Mujer(1) , Hombre(2)");
+            Integer isWomenPatient = scanner.nextInt();
+            if(isWomenPatient == 1) {
+                newGenrePatient = "Mujer";
+                requestDeclined = false;
+            } else if(isWomenPatient == 2) {
+                newGenrePatient = "Hombre";
+                requestDeclined = false;
+            } else {
+                System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-2. Inténtelo de nuevo");
+            }
+        }
+
+        Patients newPatient = new Patients(
+                newNamePatient,
+                newLastNamePatient,
+                newWeightPatient,
+                newHeightPatient,
+                newAgePatient,
+                newGenrePatient,
+                weeklyDiet
+        );
+        patientsList.add(newPatient);
+    }
+
+    public void showPatientsDetails() {
+        //TODO lista de pacientes para tener algo :(
+        System.out.println("BIENVENIDO AL GESTOR DE DATOS DE PACIENTES");
+        System.out.println("======================================");
+        System.out.println("Estos son tus pacientes registrados:");
+
+        if(patientsList.size() == 0) {
+            System.out.println("ERROR: Todavía no tienes pacientes registrados");
+        } else {
+            System.out.println("Selecciona al paciente del que necesitas más información: ");
+            int patientSelected = scanner.nextInt();
+            for (int i = 0; i < patientsList.size(); i++) {
+                System.out.println(i + "." + patientsList.get(i).getName() + ", " + patientsList.get(i).getLastName());
+            }
+
+        }
+    }
+
+    public void addDietToPatient(){
+
+    }
+
+    public void removeDietToPatient() {
+
+    }
+
+    public void dischargePatient() {
+
+    }
+}

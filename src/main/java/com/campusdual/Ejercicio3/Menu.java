@@ -6,14 +6,12 @@ import com.campusdual.Ejercicio3.DietType.MacronutrientsDiet;
 import com.campusdual.Ejercicio3.DietType.PersonalDiet;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     Meals meal;
     Diet diet;
-    PersonalDiet personalDiet;
-    CaloriesDiet caloriesDiet;
-    MacronutrientsDiet macronutrientsDiet;
 
     public ArrayList<Food> arrayFoods = new ArrayList<>();
     boolean isRunning = true;
@@ -63,7 +61,7 @@ public void startApp() {
                     int foodSelected = scanner.nextInt();
                     if (foodSelected >= 0 && foodSelected < arrayFoods.size()) {
                         Food food = arrayFoods.get(foodSelected);
-                        addFood(food);
+                        foodToMeal(food);
                     } else {
                         System.out.println("Opción no válida. Por favor, selecciona una opción válida del 0 al 9.");
                     }
@@ -85,7 +83,7 @@ public void startApp() {
 
                     int newFoodAdded = arrayFoods.size() - 1;
                     Food food = arrayFoods.get(newFoodAdded);
-                    addFood(food);
+                    foodToMeal(food);
                 } else {
                     System.out.println("ERROR, no has seleccionado una opción válida");
                 }
@@ -176,7 +174,6 @@ public void startApp() {
             }
         } else {
             System.out.println("La dieta ha sido creada");
-            diet = new Diet();
 
             System.out.println(
                     "Elige tu plan de dieta: \n" +
@@ -185,15 +182,14 @@ public void startApp() {
                     "3.por macronutrientes (3)\n" +
                     "4.Por datos personales(4)");
             int dietType = scanner.nextInt();
-            diet.setDietType(dietType);
 
             switch (dietType) {
                 case 1:
+                    diet = new Diet();
                     System.out.println("Has escogido: Sin límite");
                     break;
-
                 case 2:
-                    caloriesDiet = new CaloriesDiet();
+                    diet = new CaloriesDiet();
                     System.out.println("Has escogido: Por calorías");
 
                     System.out.println("Establece tu máximo de calorías");
@@ -201,7 +197,7 @@ public void startApp() {
                     break;
 
                 case 3:
-                    macronutrientsDiet = new MacronutrientsDiet();
+                    diet = new MacronutrientsDiet();
                     System.out.println("Has escogido: Por macronutrientes");
                     System.out.println("Selecciona tu género: mujer(1), hombre(2)");
                     int genero = scanner.nextInt();
@@ -227,7 +223,7 @@ public void startApp() {
                     break;
 
                 case 4:
-                    personalDiet = new PersonalDiet();
+                    diet = new PersonalDiet();
                     System.out.println("Has escogido: Por datos personales");
 
                     System.out.println("Establece tu máximo de proteínas");
@@ -244,47 +240,53 @@ public void startApp() {
                     System.out.println("Opción no válida");
                     break;
             }
+
+            diet.setDietType(dietType);
         }
     }
 
-//AÑADIR UN ELEMENTO
-    public void addFood(Food food) {
-        meal = new Meals();
-
+//Paso intermedio
+public void foodToMeal(Food food) {
+    meal = new Meals();
+        if (diet != null) {
         System.out.println("Selecciona la cantidad de ingesta del alimento " + food.getName());
         meal.setGrams(scanner.nextInt());
-        if (diet != null) {
-            String newMealName = food.getName();
+        String newMealName = food.getName();
+        Double protesMeals = (food.getProteins()/100) * meal.getGrams();
+        Double fatsMeals = (food.getFats()/100) * meal.getGrams();
+        Double carbosMeals = (food.getCarbos()/100) * meal.getGrams();
 
-            Double protesMeals = (food.getProteins()/100) * meal.getGrams();
-            Double fatsMeals = (food.getFats()/100) * meal.getGrams();
-            Double carbosMeals = (food.getCarbos()/100) * meal.getGrams();
+        Meals newMeal = new Meals(newMealName, protesMeals, fatsMeals, carbosMeals, meal.getGrams());
+        addFood(newMeal);
+    } else {
+        System.out.println("ERROR: no puedes introducir alimentos en una dieta si crear");
+    }
+}
 
-            Meals newMeal = new Meals(newMealName, protesMeals, fatsMeals, carbosMeals, meal.getGrams());
+//AÑADIR UN ELEMENTO
+    public void addFood(Meals meal) {
+
             switch (diet.getDietType()) {
                 case 1:
-                    diet.noLimitDiet(newMeal);
+                    diet.noLimitDiet(meal);
                     break;
 
                 case 2:
-                    caloriesDiet.caloriesDiet(newMeal);
+                    ((CaloriesDiet) diet).caloriesDiet(meal);
                     break;
-
                 case 3:
-                    macronutrientsDiet.macroDiet(newMeal);
+                    ((MacronutrientsDiet) diet).macroDiet(meal);
                     break;
 
                 case 4:
-                    personalDiet.personalDiet(newMeal);
+                    ((PersonalDiet) diet).personalDiet(meal);
                     break;
 
                 default:
                     System.out.println("ERROR, reinicie su dieta");
                     break;
             }
-        } else {
-            System.out.println("ERROR: no puedes introducir alimentos en una dieta si crear");
-        }
+
     }
 }
 
