@@ -1,13 +1,10 @@
 package com.campusdual.Ejercicio3JuanjoV.Patients;
 
-import com.campusdual.Ejercicio3JuanjoV.Diet;
-
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Patients {
     List<Patients> patientsList = new ArrayList<>();
-    Map<Integer, Diet> weeklyDiet;
+    Map weeklyDiet;
     Scanner scanner = new Scanner(System.in);
     Scanner scannerName = new Scanner(System.in);
     private boolean requestDeclined;
@@ -19,9 +16,6 @@ public class Patients {
     private Integer age;
     private String genre;
     private String newGenrePatient;
-    private String day;
-    private Diet dietName;
-
 
     public String getName() {
         return name;
@@ -47,6 +41,8 @@ public class Patients {
     }
 
     public void createPatient() {
+        this.requestDeclined = true;
+
         System.out.println("BIENVENIDO AL REGISTRO DE PACIENTES");
         System.out.println("======================================");
         System.out.println("Escribe el nombre del paciente:");
@@ -180,7 +176,7 @@ public class Patients {
                 if(chooseOtherPatient.equalsIgnoreCase("SI")) {
                     removeDietToPatient();
                 } else if (chooseOtherPatient.equalsIgnoreCase("NO")) {
-                    System.out.println("Acción cancelada");
+                    System.out.println(" ");
                 } else {
                     System.out.println("ERROR, no se ha entendido la respuesta");
                     removeDietToPatient();

@@ -17,19 +17,17 @@ package com.campusdual.Ejercicio3JuanjoV;
 //      4- Dar de baja un paciente: Elimina los datos de un paciente(No borra sus dietas asignadas dado que pueden estar asignadas a otro paciente)
 
 import com.campusdual.Ejercicio3JuanjoV.Patients.ManagePatients;
-import com.campusdual.Ejercicio3JuanjoV.Patients.Patients;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    Patients patients;
     ManagePatients managePatients;
     ManageDiets manageDiets;
 
-    public Menu(){
-        patients = new Patients();
+    public Menu() {
+        manageDiets = new ManageDiets();
+        managePatients = new ManagePatients();
     }
     public void startApp() {
         System.out.println("Bienvenido a la Aplicación de Gestión de Dietas,¿qué deseas hacer?");
@@ -46,7 +44,6 @@ public class Menu {
                 manageDiets.dietsManager();
                 break;
             case 2:
-                managePatients = new ManagePatients();
                 System.out.println("Has seleccionado: ");
                 System.out.println("GESTIONAR PACIENTES ");
                 System.out.println("=====================================");

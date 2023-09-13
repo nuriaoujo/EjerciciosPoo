@@ -1,17 +1,15 @@
 package com.campusdual.Ejercicio3JuanjoV.Patients;
 
-import com.campusdual.Ejercicio3JuanjoV.Diet;
 import com.campusdual.Ejercicio3JuanjoV.ManageDiets;
 import com.campusdual.Ejercicio3JuanjoV.Menu;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ManagePatients {
     Menu menu;
     Patients patients;
     ManageDiets manageDiets;
+
     Scanner scanner = new Scanner(System.in);
     Scanner scannerName = new Scanner(System.in);
 
@@ -25,7 +23,9 @@ public class ManagePatients {
                             "6. Volver al menú principal");
 
         int patientManagerSelected = scanner.nextInt();
-        patients = new Patients();
+        if(patients == null) {
+            patients = new Patients();
+        }
         switch(patientManagerSelected) {
             case 1:
                 patients.createPatient();
@@ -90,7 +90,7 @@ public class ManagePatients {
                     break;
             }
         } else if(repeatAction.equalsIgnoreCase("NO")) {
-            System.out.println("Hasta la próxima!");
+            System.out.println("¡Hasta la próxima!");
         } else {
             System.out.println("ERROR, no se ha entendido la respuesta");
             repeatAction();
