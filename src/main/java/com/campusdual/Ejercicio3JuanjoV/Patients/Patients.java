@@ -1,10 +1,15 @@
 package com.campusdual.Ejercicio3JuanjoV.Patients;
 
+import com.campusdual.Ejercicio3JuanjoV.Diet;
+import com.campusdual.Ejercicio3JuanjoV.DietProgram;
+import com.campusdual.Ejercicio3JuanjoV.Intake;
+
 import java.util.*;
 
 public class Patients {
+    DietProgram dietProgram;
     List<Patients> patientsList = new ArrayList<>();
-    Map weeklyDiet;
+    Map <Integer, Diet> weeklyDiet;
     Scanner scanner = new Scanner(System.in);
     Scanner scannerName = new Scanner(System.in);
     private boolean requestDeclined;
@@ -131,14 +136,14 @@ public class Patients {
                 String startNewDiet = scannerName.nextLine();
 
                 if(startNewDiet.equalsIgnoreCase("SI")) {
-                    weeklyDiet = new HashMap<>();
-                    weeklyDiet.put(1, null); //Lunes
-                    weeklyDiet.put(2, null); //Martes
-                    weeklyDiet.put(3, null); //Miércoles
-                    weeklyDiet.put(4, null); //Jueves
-                    weeklyDiet.put(5, null); //Viernes
-                    weeklyDiet.put(6, null); //Sábado
-                    weeklyDiet.put(7, null); //Domingo
+                    this.weeklyDiet = new HashMap<>();
+                    this.weeklyDiet.put(1, null); //Lunes
+                    this.weeklyDiet.put(2, null); //Martes
+                    this.weeklyDiet.put(3, null); //Miércoles
+                    this.weeklyDiet.put(4, null); //Jueves
+                    this.weeklyDiet.put(5, null); //Viernes
+                    this.weeklyDiet.put(6, null); //Sábado
+                    this.weeklyDiet.put(7, null); //Domingo
                     System.out.println("La dieta del paciente " + patientsList.get(patientSelected - 1).getName() + " " + patientsList.get(patientSelected - 1).getLastName() + " ha sido creada");
                 } else if (startNewDiet.equalsIgnoreCase("NO")) {
                     System.out.println("Operación cancelada");
@@ -147,10 +152,33 @@ public class Patients {
                     addDietToPatient();
                 }
             } else {
-                System.out.println("Selecciona la dieta que quieres añadir"); //TODO en progreso...
-            }
+                System.out.println("¿Quieres crear una nueva dieta o utilizar una existente?");
+                System.out.println( "1. Dieta nueva (1)\n" +
+                                    "2. Dieta existente (2)");
+                int newOrExistentDiet = scanner.nextInt();
 
-            patientsList.remove(patientsList.get(patientSelected - 1));
+                if(newOrExistentDiet == 1) {
+                    dietProgram.createMenu();
+                    System.out.println("¿En qué día de la semana quieres insertar la dieta?");
+                    System.out.println(  "1. Lunes (1) \n" +
+                                         "2. Martes (2) \n" +
+                                         "3. Miércoles (3) \n" +
+                                         "4. Jueves (4) \n" +
+                                         "5. Viernes (5) \n" +
+                                         "6. Sábado (6) \n" +
+                                         "7. Domingo (7) \n");
+                    int daySelection = scanner.nextInt();
+                    if(daySelection > 7 || daySelection == 0) {
+                        System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-7");
+                    } else {
+                        weeklyDiet.replace(daySelection, null , null);//TODO tengo que ver como cambiar el valor
+                    }
+                } else if(newOrExistentDiet == 2) {
+                    System.out.println("Selecciona la dieta que quieres añadir"); //TODO en progreso...
+                } else {
+                    System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-2. Inténtelo de nuevo");
+                }
+            }
         }
     }
 
@@ -183,6 +211,11 @@ public class Patients {
                 }
             } else {
                 System.out.println("Selecciona la dieta que quieres eliminar"); //TODO en progreso...
+                for(int i = 0 ; i < weeklyDiet.size() ; i++) {
+                    System.out.println((i + 1) + ". " +  patientsList.get(patientSelected - 1).weeklyDiet + " (" + (i + 1) + ")");
+                }
+                int removeSelection = scanner.nextInt();
+                weeklyDiet.replace(removeSelection, null , null); //TODO repasar como fufa esto
             }
 
         }

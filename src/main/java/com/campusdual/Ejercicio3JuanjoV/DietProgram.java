@@ -144,7 +144,7 @@ public class DietProgram {
         }
     }
 
-    private void createMenu() {
+    public void createMenu() {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("Crear/reiniciar dieta");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -157,18 +157,27 @@ public class DietProgram {
         Integer option = getOption(1,4);
         switch (option){
             case 1:
-                this.diet = new Diet();
+                System.out.println("Establece el nombre de la dieta");
+                String dietName1 = Kb.nextLine();
+                this.diet = new Diet(dietName1);
+
                 System.out.println("Se ha creado una dieta sin límites");
                 break;
             case 2:
+                System.out.println("Establece el nombre de la dieta");
+                String dietName2 = Kb.nextLine();
+
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 System.out.println("Escriba número de calorias");
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 Integer calories = Kb.forceNextInt();
-                this.diet = new Diet(calories);
+                this.diet = new Diet(dietName2, calories);
                 System.out.println("Se ha creado una dieta con "+calories+" calorías máximas");
                 break;
             case 3:
+                System.out.println("Establece el nombre de la dieta");
+                String dietName3 = Kb.nextLine();
+
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 System.out.println("Escriba los macronutrientes");
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -178,10 +187,13 @@ public class DietProgram {
                 Integer fats = Kb.forceNextInt();
                 System.out.println("Proteínas:");
                 Integer proteins = Kb.forceNextInt();
-                this.diet = new Diet(fats,carbs,proteins);
+                this.diet = new Diet(dietName3,fats,carbs,proteins);
                 System.out.println("Se ha creado una dieta con Carbohidratos:"+carbs+", Grasas:"+fats+" ,Proteínas:"+proteins);
                 break;
             case 4:
+                System.out.println("Establece el nombre de la dieta");
+                String dietName4 = Kb.nextLine();
+
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 System.out.println("Escriba los datos personales del paciente");
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
@@ -193,7 +205,7 @@ public class DietProgram {
                 Integer age = Kb.forceNextInt();
                 System.out.println("Mujer u Hombre(m/h):");
                 String sexCharacter = Kb.nextLine();
-                this.diet = new Diet("m".equalsIgnoreCase(sexCharacter),age,height,weight);
+                this.diet = new Diet(dietName4,"m".equalsIgnoreCase(sexCharacter),age,height,weight);
                 System.out.println("Se ha creado una dieta de "+this.diet.getMaxCalories()+" calorías máximas");
                 break;
         }

@@ -15,25 +15,32 @@ public class Diet {
     private Integer maxCarbs;
     private Integer maxFats;
     private Integer maxProteins;
+    private String dietName;
     private List<Intake> intakes;
 
-    public Diet(){
+    public void setDietName(String dietName) { this.dietName = dietName; }
+
+    public Diet(String dietName){
+        this.dietName = dietName;
         this.intakes = new ArrayList<>();
     }
 
-    public Diet(Integer maxCalories){
+    public Diet(String dietName, Integer maxCalories){
+        this.dietName = dietName;
         this.maxCalories=maxCalories;
         this.intakes = new ArrayList<>();
     }
 
-    public Diet(Integer maxFats, Integer maxCarbs, Integer maxProteins){
+    public Diet(String dietName, Integer maxFats, Integer maxCarbs, Integer maxProteins){
+        this.dietName = dietName;
         this.maxCarbs=maxCarbs;
         this.maxFats=maxFats;
         this.maxProteins=maxProteins;
         this.intakes = new ArrayList<>();
     }
 
-    public Diet(Boolean women, Integer age, Integer height, Integer weight){
+    public Diet(String dietName, Boolean women, Integer age, Integer height, Integer weight){
+        this.dietName = dietName;
         if(women){
             maxCalories = (int) ((10*weight) + (6.25*height))-(5*age)-161;
         }else{
