@@ -133,6 +133,7 @@ public class Patients {
             if(patientsList.get(patientSelected - 1).weeklyDiet == null) {
                 System.out.println("Todavía no has iniciado la dieta de este paciente, ¿quieres crearla? SI/NO");
                 String startNewDiet = scannerName.nextLine();
+
                 if(startNewDiet.equalsIgnoreCase("SI")) {
                     weeklyDiet = new HashMap<>();
                     weeklyDiet.put(1, null); //Lunes
@@ -170,6 +171,23 @@ public class Patients {
             }
             System.out.println("Selecciona al que deseas eliminarle una dieta: ");
             int patientSelected = scanner.nextInt();
+
+            if(patientsList.get(patientSelected - 1).weeklyDiet == null) {
+                System.out.println("ERROR, el paciente elegido todavía no tiene registrada ninguna dieta");
+                System.out.println("¿Deseas escoger otro paciente? SI/NO");
+                String chooseOtherPatient = scannerName.nextLine();
+
+                if(chooseOtherPatient.equalsIgnoreCase("SI")) {
+                    removeDietToPatient();
+                } else if (chooseOtherPatient.equalsIgnoreCase("NO")) {
+                    System.out.println("Acción cancelada");
+                } else {
+                    System.out.println("ERROR, no se ha entendido la respuesta");
+                    removeDietToPatient();
+                }
+            } else {
+                System.out.println("Selecciona la dieta que quieres eliminar"); //TODO en progreso...
+            }
 
         }
     }
