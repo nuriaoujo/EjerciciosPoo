@@ -1,6 +1,7 @@
 package com.campusdual.Ejercicio3JuanjoV.Patients;
 
 import com.campusdual.Ejercicio3JuanjoV.Diet;
+import com.campusdual.Ejercicio3JuanjoV.ManageDiets;
 import com.campusdual.Ejercicio3JuanjoV.Menu;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class ManagePatients {
     Menu menu;
     Patients patients;
+    ManageDiets manageDiets;
     Scanner scanner = new Scanner(System.in);
     Scanner scannerName = new Scanner(System.in);
 
@@ -71,7 +73,22 @@ public class ManagePatients {
         String repeatAction = scannerName.nextLine();
 
         if(repeatAction.equalsIgnoreCase("SI")) {
-            menu.startApp();
+            System.out.println("Elige qué operación deseas hacer:");
+            System.out.println("1. Gestionar dietas (1) \n" +
+                                "2. Gestionar pacientes (2)");
+            int continueOption = scanner.nextInt();
+            switch (continueOption) {
+                case 1:
+                    manageDiets.dietsManager();
+                    break;
+                case 2:
+                    patientManager();
+                    break;
+                default:
+                    System.out.println("ERROR, no se ha excogido una opción válida");
+                    repeatAction();
+                    break;
+            }
         } else if(repeatAction.equalsIgnoreCase("NO")) {
             System.out.println("Hasta la próxima!");
         } else {

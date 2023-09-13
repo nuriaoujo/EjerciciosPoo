@@ -97,7 +97,8 @@ public class Patients {
                 System.out.println((i+1) + "." + patientsList.get(i).getName() + " " + patientsList.get(i).getLastName());
             }
             System.out.println("Selecciona al paciente del que necesitas más información: ");
-            int patientSelected = scanner.nextInt(); //Restar -1 a patientSelected
+            int patientSelected = scanner.nextInt();
+
             System.out.println("INFORMACIÓN SOBRE EL PACIENTE");
             System.out.println(patientsList.get(patientSelected-1).getName() + " " + patientsList.get(patientSelected-1).getLastName());
             System.out.println("======================================");
@@ -118,6 +119,33 @@ public class Patients {
     }
 
     public void dischargePatient() {
+        System.out.println("BIENVENIDO AL PROGRAMA PARA DAR DE BAJA A PACIENTES");
+        System.out.println("======================================");
+        System.out.println("Estos son tus pacientes registrados:");
+
+        if(patientsList.size() == 0) {
+            System.out.println("ERROR: Todavía no tienes pacientes registrados");
+        } else {
+            for (int i = 0; i < patientsList.size(); i++) {
+                System.out.println((i+1) + "." + patientsList.get(i).getName() + " " + patientsList.get(i).getLastName());
+            }
+            System.out.println("Selecciona al paciente que deseas dar de baja: ");
+            int patientSelected = scanner.nextInt();
+
+            System.out.println("¿Estás seguro que deseas dar de baja a este paciente? SI/NO");
+            System.out.println(patientsList.get(patientSelected-1).getName() + " " + patientsList.get(patientSelected-1).getLastName());
+            String dischargeOption = scannerName.nextLine();
+
+            if(dischargeOption.equalsIgnoreCase("SI")) {
+                System.out.println("El paciente " + patientsList.get(patientSelected-1).getName() + " " + patientsList.get(patientSelected-1).getLastName() + " ha sido eliminado");
+                patientsList.remove(patientsList.get(patientSelected-1));
+            } else if (dischargeOption.equalsIgnoreCase("NO")) {
+                System.out.println("Operación cancelada");
+            } else {
+                System.out.println("ERROR, no se ha entendido la respuesta");
+                dischargePatient();
+            }
+        }
 
     }
 }
