@@ -15,10 +15,10 @@ public class ManagePatients {
 
     public void patientManager() {
         System.out.println("Selecciona qué deseas hacer:");
-        System.out.println("1. Dar de alta a pacientes (1) \n" +
+        System.out.println( "1. Dar de alta a pacientes (1) \n" +
                             "2. Mostrar detalles de los pacientes (2) \n" +
                             "3. Asignar dietas a pacientes (3) \n" +
-                            "4. Eliminar dietas a pacientes (4) \n" + //Todo decidir si eliminar todos los datos o solamente uno
+                            "4. Eliminar dietas a pacientes (4) \n" +
                             "5. Dar de baja a pacientes (5) \n" +
                             "6. Volver al menú principal");
 
@@ -85,7 +85,7 @@ public class ManagePatients {
                     patientManager();
                     break;
                 default:
-                    System.out.println("ERROR, no se ha excogido una opción válida");
+                    System.out.println("ERROR, no se ha escogido una opción válida");
                     repeatAction();
                     break;
             }

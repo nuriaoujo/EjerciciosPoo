@@ -13,7 +13,7 @@ import java.util.List;
 public class DietProgram {
 
     public Diet diet=null;
-    ManageDiets manageDiets;
+    public ManageDiets manageDiets;
 
     public List<Food> foodList;
     public List<Diet> dietList = new ArrayList<>();

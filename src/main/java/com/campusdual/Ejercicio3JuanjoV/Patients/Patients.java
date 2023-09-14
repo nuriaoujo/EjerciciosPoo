@@ -8,7 +8,7 @@ public class Patients {
     DietProgram dietProgram;
 
     List<Patients> patientsList = new ArrayList<>();
-    Map <Integer, Diet> weeklyDiet;
+    Map <Integer, String> weeklyDiet;
 
     Scanner scanner = new Scanner(System.in);
     Scanner scannerName = new Scanner(System.in);
@@ -113,10 +113,13 @@ public class Patients {
             System.out.println("INFORMACIÓN SOBRE EL PACIENTE");
             System.out.println(patientsList.get(patientSelected - 1).getName() + " " + patientsList.get(patientSelected - 1).getLastName());
             System.out.println("======================================");
-            if (weeklyDiet == null) {
+            if (patientsList.get(patientSelected - 1).weeklyDiet == null) {
                 System.out.println("Todavía no existen datos del paciente " + patientsList.get(patientSelected - 1).getName());
             } else {
-                System.out.println("Estas son las dietas registradas para el paciente " + patientsList.get(patientSelected - 1).getName());
+                System.out.println("Estas son las dietas registradas para el paciente "
+                                    + patientsList.get(patientSelected - 1).getName());
+
+                    System.out.println(patientsList.get(patientSelected - 1).weeklyDiet);
             }
         }
     }
@@ -145,6 +148,10 @@ public class Patients {
                 int newOrExistentDiet = scanner.nextInt();
 
                 if (newOrExistentDiet == 1) {
+                    if(dietProgram == null) {
+                        dietProgram = new DietProgram();
+                    }
+
                     dietProgram.createMenu();
                     System.out.println("¿Quieres añadir un alimento a esta nueva dieta? SI/NO");
                     String newIntaketoDiet = scannerName.nextLine();
@@ -178,7 +185,23 @@ public class Patients {
                         Food newFood = new Food(name,carbs,fats,proteins);
                         dietProgram.validateAndAddFoodToDiet(newFood,grams);
                         dietProgram.foodList.add(newFood);
+
+                        System.out.println("¿Quieres añadir otro alimento? SI/NO");
+                        String newQuestionIntaketoDiet = scannerName.nextLine();
+                        while(badAnswer) {
+                            if (newQuestionIntaketoDiet.equalsIgnoreCase("SI")) {
+                                addNewIntake = true;
+                                badAnswer = false;
+                            } else if (newQuestionIntaketoDiet.equalsIgnoreCase("NO")) {
+                                addNewIntake = false;
+                                badAnswer = false;
+                            } else {
+                                System.out.println("ERROR, no se ha entendido la respuesta");
+                                badAnswer = true;
+                            }
+                        }
                     }
+
                     System.out.println("======================================");
                     System.out.println("La nueva dieta ha sido creada");
                     System.out.println("¿En qué día de la semana quieres insertar la dieta?");
@@ -194,7 +217,7 @@ public class Patients {
                     if (daySelection > 7 || daySelection == 0) {
                         System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-7");
                     } else {
-                        weeklyDiet.replace(daySelection, null, dietProgram.diet);
+                        patientsList.get(patientSelected - 1).weeklyDiet.replace(daySelection, null, dietProgram.diet.getDietName());
                     }
                 } else if (newOrExistentDiet == 2) {
                     System.out.println("Selecciona la dieta que quieres añadir"); //TODO en progreso...
@@ -219,14 +242,14 @@ public class Patients {
                         if (daySelection > 7 || daySelection == 0) {
                             System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-7");
                         } else {
-                            weeklyDiet.replace(daySelection, null, dietProgram.dietList.get(dietSelected));
+                            patientsList.get(patientSelected - 1).weeklyDiet.replace(daySelection, null, dietProgram.dietList.get(dietSelected).getDietName());
                         }
                     }
                 } else {
                     System.out.println("ERROR, el valor proporcionado no se encuentra entre 1-2. Inténtelo de nuevo");
                 }
             } else {
-                System.out.println("Todavía no has iniciado la dieta de este paciente, será creada a continuació");
+                System.out.println("Todavía no has iniciado la dieta de este paciente, será creada a continuación");
                 patientsList.get(patientSelected - 1).weeklyDiet.put(1, null); //Lunes
                 patientsList.get(patientSelected - 1).weeklyDiet.put(2, null); //Martes
                 patientsList.get(patientSelected - 1).weeklyDiet.put(3, null); //Miércoles
@@ -255,7 +278,7 @@ public class Patients {
             System.out.println("Selecciona al que deseas eliminarle una dieta: ");
             int patientSelected = scanner.nextInt();
 
-            if(patientsList.get(patientSelected - 1).weeklyDiet == null) {
+            if(patientsList.get(patientSelected - 1).weeklyDiet.size() == 0) {
                 System.out.println("ERROR, el paciente elegido todavía no tiene registrada ninguna dieta");
                 System.out.println("¿Deseas escoger otro paciente? SI/NO");
                 String chooseOtherPatient = scannerName.nextLine();
@@ -269,13 +292,12 @@ public class Patients {
                     removeDietToPatient();
                 }
             } else {
-                System.out.println("Selecciona la dieta que quieres eliminar"); //TODO en progreso...
-                for(int i = 0 ; i < weeklyDiet.size() ; i++) {
-                    System.out.println((i + 1) + ". " +  patientsList.get(patientSelected - 1).weeklyDiet +
-                                        " (" + (i + 1) + ")");
-                }
+                System.out.println("Selecciona la dieta que quieres eliminar");
+                System.out.println(patientsList.get(patientSelected - 1).weeklyDiet);
+
                 int removeSelection = scanner.nextInt();
-                weeklyDiet.replace(removeSelection, null , null); //TODO repasar como fufa esto
+                patientsList.get(patientSelected - 1).weeklyDiet.replace(removeSelection,dietProgram.diet.getDietName() , null);
+
             }
         }
     }
