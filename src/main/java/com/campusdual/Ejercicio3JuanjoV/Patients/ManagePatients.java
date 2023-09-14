@@ -75,7 +75,7 @@ public class ManagePatients {
         if(repeatAction.equalsIgnoreCase("SI")) {
             System.out.println("Elige qué operación deseas hacer:");
             System.out.println("1. Gestionar dietas (1) \n" +
-                                "2. Gestionar pacientes (2)");
+                    "2. Gestionar pacientes (2)");
             int continueOption = scanner.nextInt();
             switch (continueOption) {
                 case 1:

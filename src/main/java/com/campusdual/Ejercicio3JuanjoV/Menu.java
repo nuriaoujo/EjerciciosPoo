@@ -23,13 +23,14 @@ import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
+
     ManagePatients managePatients;
     ManageDiets manageDiets;
     Patients patients;
 
     public Menu() {
-        manageDiets = new ManageDiets();
         managePatients = new ManagePatients();
+        manageDiets = new ManageDiets();
         patients = new Patients();
     }
     public void startApp() {
@@ -40,7 +41,6 @@ public class Menu {
         Integer menuSelection = scanner.nextInt();
         switch(menuSelection) {
             case 1:
-                manageDiets = new ManageDiets();
                 System.out.println("Has seleccionado: ");
                 System.out.println("GESTIONAR DIETAS ");
                 System.out.println("=====================================");
@@ -59,4 +59,5 @@ public class Menu {
                 break;
         }
     }
+
 }

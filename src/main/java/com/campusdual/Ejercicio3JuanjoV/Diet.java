@@ -16,8 +16,9 @@ public class Diet {
     private Integer maxFats;
     private Integer maxProteins;
     private String dietName;
-    private List<Intake> intakes;
+    List<Intake> intakes;
 
+    public String getDietName() { return dietName; }
     public void setDietName(String dietName) { this.dietName = dietName; }
 
     public Diet(String dietName){

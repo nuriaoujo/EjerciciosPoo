@@ -13,8 +13,10 @@ import java.util.List;
 public class DietProgram {
 
     private Diet diet=null;
+    ManageDiets manageDiets;
 
     private List<Food> foodList;
+    List<Diet> dietList = new ArrayList<>();
 
     public DietProgram(){
         foodList = new ArrayList<>();
@@ -46,10 +48,10 @@ public class DietProgram {
         do{
             System.out.println("Escriba una opción:");
             System.out.println("===================================");
-            System.out.println("1-Crear/reiniciar dieta");
-            System.out.println("2-Mostrar información de la dieta");
-            System.out.println("3-Agregar alimento al plan actual");
-            System.out.println("4-Salir del programa");
+            System.out.println("1-Crear una nueva dieta");
+            System.out.println("2-Mostrar información de esta dieta");
+            System.out.println("3-Agregar alimento a la dieta actual");
+            System.out.println("4-Retroceder a la ventana anterior");
             option = getOption(1,4);
             switch (option){
                 case 1:
@@ -62,7 +64,7 @@ public class DietProgram {
                     addFoodMenu();
                     break;
                 case 4:
-                    System.out.println("Gracias por usar el programa, hasta pronto :)");
+                    System.out.println("Gracias por usar el programa, volverás al Gestor de Dietas");
                     break;
             }
         }while(option != 4);
@@ -146,7 +148,7 @@ public class DietProgram {
 
     public void createMenu() {
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-        System.out.println("Crear/reiniciar dieta");
+        System.out.println("Crear nueva dieta");
         System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         System.out.println("Escriba una opción:");
         System.out.println("===================================");
@@ -162,6 +164,10 @@ public class DietProgram {
                 this.diet = new Diet(dietName1);
 
                 System.out.println("Se ha creado una dieta sin límites");
+                if(manageDiets == null) {
+                    manageDiets = new ManageDiets();
+                }
+                dietList.add(diet);
                 break;
             case 2:
                 System.out.println("Establece el nombre de la dieta");
@@ -172,7 +178,9 @@ public class DietProgram {
                 System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 Integer calories = Kb.forceNextInt();
                 this.diet = new Diet(dietName2, calories);
+
                 System.out.println("Se ha creado una dieta con "+calories+" calorías máximas");
+                dietList.add(diet);
                 break;
             case 3:
                 System.out.println("Establece el nombre de la dieta");
@@ -188,7 +196,9 @@ public class DietProgram {
                 System.out.println("Proteínas:");
                 Integer proteins = Kb.forceNextInt();
                 this.diet = new Diet(dietName3,fats,carbs,proteins);
+
                 System.out.println("Se ha creado una dieta con Carbohidratos:"+carbs+", Grasas:"+fats+" ,Proteínas:"+proteins);
+                dietList.add(diet);
                 break;
             case 4:
                 System.out.println("Establece el nombre de la dieta");
@@ -206,7 +216,9 @@ public class DietProgram {
                 System.out.println("Mujer u Hombre(m/h):");
                 String sexCharacter = Kb.nextLine();
                 this.diet = new Diet(dietName4,"m".equalsIgnoreCase(sexCharacter),age,height,weight);
+
                 System.out.println("Se ha creado una dieta de "+this.diet.getMaxCalories()+" calorías máximas");
+                dietList.add(diet);
                 break;
         }
     }
