@@ -12,11 +12,11 @@ import java.util.List;
 
 public class DietProgram {
 
-    private Diet diet=null;
+    public Diet diet=null;
     ManageDiets manageDiets;
 
-    private List<Food> foodList;
-    List<Diet> dietList = new ArrayList<>();
+    public List<Food> foodList;
+    public List<Diet> dietList = new ArrayList<>();
 
     public DietProgram(){
         foodList = new ArrayList<>();
@@ -70,7 +70,7 @@ public class DietProgram {
         }while(option != 4);
     }
 
-    private void addFoodMenu() {
+    public void addFoodMenu() {
         if(this.diet==null){
             System.out.println("Para agregar alimentos hace falta iniciar una dieta");
             return;
@@ -130,7 +130,7 @@ public class DietProgram {
         }
     }
 
-    private void validateAndAddFoodToDiet(Food food, Integer grams){
+    public void validateAndAddFoodToDiet(Food food, Integer grams){
         try{
             this.diet.addFood(food,grams);
         }catch (MaxCaloriesReachedException ecal){
