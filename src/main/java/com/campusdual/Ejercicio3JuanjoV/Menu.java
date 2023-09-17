@@ -17,21 +17,31 @@ package com.campusdual.Ejercicio3JuanjoV;
 //      4- Dar de baja un paciente: Elimina los datos de un paciente(No borra sus dietas asignadas dado que pueden estar asignadas a otro paciente)
 
 import com.campusdual.Ejercicio3JuanjoV.Patients.ManagePatients;
-import com.campusdual.Ejercicio3JuanjoV.Patients.Patients;
+import com.campusdual.Ejercicio3JuanjoV.Patients.Patient;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
+    Scanner scannerName = new Scanner(System.in);
 
     ManagePatients managePatients;
     ManageDiets manageDiets;
-    Patients patients;
+    public DietProgram dietProgram;
+
+    public List<Diet> dietList = new ArrayList<>();
+    public List<Patient> patientsList = new ArrayList<>();
 
     public Menu() {
-        managePatients = new ManagePatients();
-        manageDiets = new ManageDiets();
-        patients = new Patients();
+        managePatients = new ManagePatients(this);
+        manageDiets = new ManageDiets(this);
+        dietProgram = new DietProgram(this);
+
+        patientsList.add(new Patient("María", "Álvarez", 67, 168, 43, "Mujer", null));
+        patientsList.add(new Patient("Joaquín", "Míguez", 87, 173, 27, "Hombre", null));
+
     }
     public void startApp() {
         System.out.println("Bienvenido a la Aplicación de Gestión de Dietas,¿qué deseas hacer?");
@@ -59,5 +69,22 @@ public class Menu {
                 break;
         }
     }
+
+    public void repeatAction() {
+        System.out.println("======================================");
+        System.out.println("¿Quieres realizar otra operación? SI/NO");
+        String repeatAction = scannerName.nextLine();
+
+        if(repeatAction.equalsIgnoreCase("SI")) {
+            startApp();
+        } else if(repeatAction.equalsIgnoreCase("NO")) {
+            System.out.println("¡Hasta la próxima!");
+        } else {
+            System.out.println("ERROR, no se ha entendido la respuesta");
+            repeatAction();
+        }
+    }
+
+
 
 }

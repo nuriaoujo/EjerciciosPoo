@@ -11,15 +11,16 @@ import java.util.InputMismatchException;
 import java.util.List;
 
 public class DietProgram {
+    Menu menu;
 
     public Diet diet=null;
-    public ManageDiets manageDiets;
 
     public List<Food> foodList;
-    public List<Diet> dietList = new ArrayList<>();
 
-    public DietProgram(){
+    public DietProgram(Menu menu) {
+
         foodList = new ArrayList<>();
+        this.menu = menu;
     }
 
     private Integer getOption(Integer min,Integer max){
@@ -104,7 +105,7 @@ public class DietProgram {
                 foodList.add(newFood);
                 break;
             case 2:
-                if(foodList.size()==0){
+                if(foodList.isEmpty()){
                     System.out.println("Para agregar un alimento existente, tienen que existir alimentos previos");
                     return;
                 }
@@ -164,10 +165,7 @@ public class DietProgram {
                 this.diet = new Diet(dietName1);
 
                 System.out.println("Se ha creado una dieta sin límites");
-                if(manageDiets == null) {
-                    manageDiets = new ManageDiets();
-                }
-                dietList.add(diet);
+                menu.dietList.add(diet);
                 break;
             case 2:
                 System.out.println("Establece el nombre de la dieta");
@@ -180,7 +178,7 @@ public class DietProgram {
                 this.diet = new Diet(dietName2, calories);
 
                 System.out.println("Se ha creado una dieta con "+calories+" calorías máximas");
-                dietList.add(diet);
+                menu.dietList.add(diet);
                 break;
             case 3:
                 System.out.println("Establece el nombre de la dieta");
@@ -198,7 +196,7 @@ public class DietProgram {
                 this.diet = new Diet(dietName3,fats,carbs,proteins);
 
                 System.out.println("Se ha creado una dieta con Carbohidratos:"+carbs+", Grasas:"+fats+" ,Proteínas:"+proteins);
-                dietList.add(diet);
+                menu.dietList.add(diet);
                 break;
             case 4:
                 System.out.println("Establece el nombre de la dieta");
@@ -218,7 +216,7 @@ public class DietProgram {
                 this.diet = new Diet(dietName4,"m".equalsIgnoreCase(sexCharacter),age,height,weight);
 
                 System.out.println("Se ha creado una dieta de "+this.diet.getMaxCalories()+" calorías máximas");
-                dietList.add(diet);
+                menu.dietList.add(diet);
                 break;
         }
     }
