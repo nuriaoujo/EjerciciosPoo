@@ -1,9 +1,9 @@
 package com.campusdual.Ejercicio3JuanjoV;
 
 import com.campusdual.Ejercicio3JuanjoV.exceptions.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
 public class Diet {
     public static final String OK = "OK";
     public static final String MAX_CALORIES_REBASE = "MAX_CALORIES_REBASE";
@@ -92,7 +92,7 @@ public class Diet {
         return OK;
     }
 
-	public Integer getTotalCalories(){
+    public Integer getTotalCalories(){
         Integer totalCalories = 0;
         for(Intake intake:intakes){
             totalCalories = totalCalories+ intake.calculatedCalories();
@@ -100,7 +100,7 @@ public class Diet {
         return totalCalories;
     }
 
-	public Integer getTotalCarbs(){
+    public Integer getTotalCarbs(){
         Integer totalCarbs = 0;
         for(Intake intake:intakes){
             totalCarbs = totalCarbs + intake.calculatedCarbos();
@@ -108,7 +108,7 @@ public class Diet {
         return totalCarbs;
     }
 
-	public Integer getTotalFats(){
+    public Integer getTotalFats(){
         Integer totalFats = 0;
         for(Intake intake:intakes){
             totalFats = totalFats + intake.calculatedFats();
@@ -116,7 +116,7 @@ public class Diet {
         return totalFats;
     }
 
-	public Integer getTotalProteins(){
+    public Integer getTotalProteins(){
         Integer totalProtein = 0;
         for(Intake intake: intakes){
             totalProtein = totalProtein + intake.calculatedProteins();
